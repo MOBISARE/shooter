@@ -26,8 +26,10 @@ class Game:
         while running:
 
             # apply background
-            self.screen.blit(self.background, (0, 0))
+            self.screen.blit(self.background, (0, -200))
 
+            # update
+            pygame.display.flip()
 
             pygame.display.flip()
             for event in pygame.event.get():
