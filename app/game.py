@@ -22,6 +22,8 @@ class Game:
         # load the player
         self.player = Player()
 
+        self.pressed = {}
+
 
 
     # Main loop of the game
@@ -37,11 +39,22 @@ class Game:
             # apply the player
             self.screen.blit(self.player.image, self.player.rect)
 
+            # key pressed verification
+            if self.pressed.get(pygame.K_RIGHT):
+                self.player.move_right()
+            elif self.pressed.get(pygame.K_LEFT):
+                self.player.move_left()
+
             # update
             pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+
+                elif event.type == pygame.KEYDOWN:
+                    self.pressed[event.key] = True
+                elif event.type == pygame.KEYUP:
+                    self.pressed[event.key] = False
 
             clock.tick(60)
         print("Exiting...")

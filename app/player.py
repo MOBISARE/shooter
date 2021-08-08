@@ -12,3 +12,11 @@ class Player(pygame.sprite.Sprite):
 
         self.image = pygame.image.load("/home/mobisare/Documents/PyCharmProjects/shooter/app/assets/player.png")
         self.rect = self.image.get_rect()
+        self.rect.x = 400
+        self.rect.y = 500
+
+    def move_right(self):
+        self.rect.x += self.velocity
+
+    def move_left(self):
+        self.rect.x -= self.velocity
