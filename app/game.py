@@ -8,8 +8,6 @@ from player import Player
 
 class Game:
 
-
-
     # Constructor
     def __init__(self) -> None:
 
@@ -31,8 +29,6 @@ class Game:
         self.player = Player()
 
         self.pressed = {}
-
-
 
     # Main loop of the game
     def run(self) -> None:
