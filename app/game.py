@@ -8,11 +8,19 @@ from player import Player
 
 class Game:
 
+
+
     # Constructor
     def __init__(self) -> None:
 
+        # Constants
+        self.WIDTH = 1080
+        self.HEIGHT = 720
+        self.LEFT_EDGE = -40
+        self.RIGHT_EDGE = 920
         # making the screen
-        self.screen = pygame.display.set_mode((1080, 720))
+
+        self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         pygame.display.set_caption("Shooter")
 
         # making the background
@@ -40,10 +48,11 @@ class Game:
             self.screen.blit(self.player.image, self.player.rect)
 
             # key pressed verification
-            if self.pressed.get(pygame.K_RIGHT):
+            if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x < self.RIGHT_EDGE:
                 self.player.move_right()
-            elif self.pressed.get(pygame.K_LEFT):
+            elif self.pressed.get(pygame.K_LEFT) and self.player.rect.x > self.LEFT_EDGE:
                 self.player.move_left()
+
 
             # update
             pygame.display.flip()
