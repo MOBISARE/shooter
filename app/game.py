@@ -47,12 +47,17 @@ class Game:
             # apply the player
             self.screen.blit(self.player.image, self.player.rect)
 
+            for projectile in self.player.all_projectiles:
+                projectile.move()
+
+            # apply the projectiles
+            self.player.all_projectiles.draw(self.screen)
+
             # key pressed verification
             if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x < self.RIGHT_EDGE:
                 self.player.move_right()
             elif self.pressed.get(pygame.K_LEFT) and self.player.rect.x > self.LEFT_EDGE:
                 self.player.move_left()
-
 
             # update
             pygame.display.flip()
@@ -62,6 +67,10 @@ class Game:
 
                 elif event.type == pygame.KEYDOWN:
                     self.pressed[event.key] = True
+
+                    if event.key == pygame.K_SPACE:
+                        self.player.launch_projectile()
+
                 elif event.type == pygame.KEYUP:
                     self.pressed[event.key] = False
 
