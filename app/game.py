@@ -7,14 +7,14 @@ import constants
 from monster import Monster
 from player import Player
 from pygame.sprite import Group, Sprite
-
+from comet_event import CometFallEvent
 
 class Game:
 
     # Constructor
     def __init__(self) -> None:
 
-        self.is_playing = False
+        self.is_playing = True
 
         # making the screen
 
@@ -42,6 +42,8 @@ class Game:
         self.group_players.add(self.player)
         self.pressed = {}
 
+        # comet event
+        self.comet_event = CometFallEvent()
 
         # group of monsters
         self.group_monsters = Group()
@@ -53,6 +55,9 @@ class Game:
 
         # update player's health bar
         self.player.update_health_bar(self.screen)
+
+        # update comet event bar
+        self.comet_event.update_bar(self.screen)
 
         for projectile in self.player.all_projectiles:
             projectile.move()
