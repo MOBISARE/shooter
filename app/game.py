@@ -3,6 +3,7 @@ import os
 import pygame.display
 from pygame.time import Clock
 
+import constants
 from player import Player
 
 
@@ -11,19 +12,13 @@ class Game:
     # Constructor
     def __init__(self) -> None:
 
-        # Constants
-        self.WIDTH = 1080
-        self.HEIGHT = 720
-        self.LEFT_EDGE = -40
-        self.RIGHT_EDGE = 920
         # making the screen
 
-        self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
+        self.screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
         pygame.display.set_caption("Shooter")
 
         # making the background
-        print(os.path.exists("/home/mobisare/Documents/PyCharmProjects/shooter/app/assets/bg.jpg"))
-        self.background = pygame.image.load("/home/mobisare/Documents/PyCharmProjects/shooter/app/assets/bg.jpg")
+        self.background = pygame.image.load(constants.BACKGROUND_PATH)
 
         # load the player
         self.player = Player()
@@ -50,9 +45,9 @@ class Game:
             self.player.all_projectiles.draw(self.screen)
 
             # key pressed verification
-            if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x < self.RIGHT_EDGE:
+            if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x < constants.RIGHT_EDGE:
                 self.player.move_right()
-            elif self.pressed.get(pygame.K_LEFT) and self.player.rect.x > self.LEFT_EDGE:
+            elif self.pressed.get(pygame.K_LEFT) and self.player.rect.x > constants.LEFT_EDGE:
                 self.player.move_left()
 
             # update
@@ -70,6 +65,6 @@ class Game:
                 elif event.type == pygame.KEYUP:
                     self.pressed[event.key] = False
 
-            clock.tick(60)
+            clock.tick(constants.FRAME)
         print("Exiting...")
         pygame.quit()
