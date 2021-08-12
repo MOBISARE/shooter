@@ -30,8 +30,10 @@ class Projectile(Sprite):
         if self.rect.x > constants.RIGHT_OUT:
             self.remove()
 
-        if self.player.game.check_collisison(self, self.player.game.group_monsters):
+        for monster in self.player.game.check_collisison(self, self.player.game.group_monsters):
             self.remove()
+            monster.damage(self.player.attack)
+
 
     def remove(self) -> None:
         self.player.all_projectiles.remove(self)

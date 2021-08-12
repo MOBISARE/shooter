@@ -30,3 +30,15 @@ class Player(Sprite):
     def launch_projectile(self) -> None:
         projectile = Projectile(self)
         self.all_projectiles.add(projectile)
+
+    def update_health_bar(self, surface) -> None:
+        bar_color = (50, 255, 26)
+        bar_position = [self.rect.x + 50, self.rect.y + 20, self.health, 5]
+        back_bar_color = (87, 87, 87)
+        back_bar_position = [self.rect.x + 50, self.rect.y + 20, self.max_health, 5]
+        pygame.draw.rect(surface, back_bar_color, back_bar_position)
+        pygame.draw.rect(surface, bar_color, bar_position)
+
+    def damage(self, amount):
+        if self.health - amount > amount:
+            self.health -= amount

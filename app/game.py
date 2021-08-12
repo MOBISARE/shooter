@@ -32,6 +32,7 @@ class Game:
         # group of monsters
         self.group_monsters = Group()
         self.spawn_monsters()
+        self.spawn_monsters()
 
     # Main loop of the game
     def run(self) -> None:
@@ -46,11 +47,15 @@ class Game:
             # apply the player
             self.screen.blit(self.player.image, self.player.rect)
 
+            # update player's health bar
+            self.player.update_health_bar(self.screen)
+
             for projectile in self.player.all_projectiles:
                 projectile.move()
 
             for monster in self.group_monsters:
                 monster.forward()
+                monster.update_health_bar(self.screen)
 
             # apply the projectiles
             self.player.all_projectiles.draw(self.screen)
