@@ -4,7 +4,9 @@ import pygame.display
 from pygame.time import Clock
 
 import constants
+from monster import Monster
 from player import Player
+from pygame.sprite import Group, Sprite
 
 
 class Game:
@@ -21,9 +23,15 @@ class Game:
         self.background = pygame.image.load(constants.BACKGROUND_PATH)
 
         # load the player
-        self.player = Player()
-
+        self.group_players = Group()
+        self.player = Player(self)
+        self.group_players.add(self.player)
         self.pressed = {}
+
+
+        # group of monsters
+        self.group_monsters = Group()
+        self.spawn_monsters()
 
     # Main loop of the game
     def run(self) -> None:
@@ -41,8 +49,14 @@ class Game:
             for projectile in self.player.all_projectiles:
                 projectile.move()
 
+            for monster in self.group_monsters:
+                monster.forward()
+
             # apply the projectiles
             self.player.all_projectiles.draw(self.screen)
+
+            # apply monsters
+            self.group_monsters.draw(self.screen)
 
             # key pressed verification
             if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x < constants.RIGHT_EDGE:
@@ -68,3 +82,10 @@ class Game:
             clock.tick(constants.FRAME)
         print("Exiting...")
         pygame.quit()
+
+    def spawn_monsters(self) -> None:
+        monster = Monster(self)
+        self.group_monsters.add(monster)
+
+    def check_collisison(self, sprite: Sprite, group: Group):
+        return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)

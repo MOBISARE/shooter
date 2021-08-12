@@ -7,8 +7,9 @@ from pygame.sprite import Sprite
 
 class Player(Sprite):
 
-    def __init__(self) -> None:
+    def __init__(self, game) -> None:
         super().__init__()
+        self.game = game
         self.health = 100
         self.max_health = 100
         self.attack = 10
@@ -20,7 +21,8 @@ class Player(Sprite):
         self.rect.y = 500
 
     def move_right(self) -> None:
-        self.rect.x += self.velocity
+        if not self.game.check_collisison(self, self.game.group_monsters):
+            self.rect.x += self.velocity
 
     def move_left(self) -> None:
         self.rect.x -= self.velocity

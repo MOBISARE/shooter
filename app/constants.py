@@ -1,29 +1,31 @@
 import os
 
-
 # Constants for all paths
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+from typing import Final
 
-PROJECTILE_PATH = os.path.join(ROOT_DIR, "assets", "projectile.png")
-BACKGROUND_PATH = os.path.join(ROOT_DIR, "assets", "bg.jpg")
-PLAYER_PATH = os.path.join(ROOT_DIR, "assets", "player.png")
+ROOT_DIR: Final[str] = os.path.dirname(os.path.abspath(__file__))
+
+PROJECTILE_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "projectile.png")
+BACKGROUND_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "bg.jpg")
+PLAYER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "player.png")
+MONSTER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "mummy.png")
 # Constants for the screen
 
-FRAME = 60
+FRAME: Final[int] = 60
 
-SCREEN_WIDTH = 1080
-SCREEN_HEIGHT = 720
+SCREEN_WIDTH: Final[int] = 1080
+SCREEN_HEIGHT: Final[int] = 720
 
-LEFT_EDGE = -40
-RIGHT_EDGE = 920
+LEFT_EDGE: Final[int] = -40
+RIGHT_EDGE: Final[int] = 920
 
-LEFT_OUT = -100
-RIGHT_OUT = 1080
+LEFT_OUT: Final[int] = -100
+RIGHT_OUT: Final[int] = 1080
 
 # Constants for the projectile
 
-PROJECTILE_SIZE = 50
-PROJECTILE_SCALE_X = 130
-PROJECTILE_SCALE_Y = 80
-PROJECTILE_VELOCITY = 5
-PROJECTILE_ROTATION = 12
+PROJECTILE_SIZE: Final[int] = 50
+PROJECTILE_SCALE_X: Final[int] = 130
+PROJECTILE_SCALE_Y: Final[int] = 80
+PROJECTILE_VELOCITY: Final[int] = 5
+PROJECTILE_ROTATION: Final[int] = 12
