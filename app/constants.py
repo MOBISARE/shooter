@@ -9,6 +9,8 @@ PROJECTILE_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "projectile.png")
 BACKGROUND_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "bg.jpg")
 PLAYER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "player.png")
 MONSTER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "mummy.png")
+BANNER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "banner.png")
+BUTTON_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "button.png")
 # Constants for the screen
 
 FRAME: Final[int] = 60
