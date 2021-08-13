@@ -14,7 +14,7 @@ class Game:
     # Constructor
     def __init__(self) -> None:
 
-        self.is_playing = True
+        self.is_playing = False
 
         # making the screen
 
@@ -43,7 +43,7 @@ class Game:
         self.pressed = {}
 
         # comet event
-        self.comet_event = CometFallEvent()
+        self.comet_event = CometFallEvent(self)
 
         # group of monsters
         self.group_monsters = Group()
@@ -66,11 +66,17 @@ class Game:
             monster.forward()
             monster.update_health_bar(self.screen)
 
+        for comet in self.comet_event.all_comets:
+            comet.fall()
+
         # apply the projectiles
         self.player.all_projectiles.draw(self.screen)
 
         # apply monsters
         self.group_monsters.draw(self.screen)
+
+        # apply the comets
+        self.comet_event.all_comets.draw(self.screen)
 
         # key pressed verification
         if self.pressed.get(pygame.K_RIGHT) and self.player.rect.x < constants.RIGHT_EDGE:

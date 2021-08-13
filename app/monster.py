@@ -43,3 +43,7 @@ class Monster(Sprite):
             self.rect.x = 1080
             self.health = self.max_health
             self.velocity = random.randint(1, 3)
+
+            if self.game.comet_event.is_full_loaded():
+                self.game.group_monsters.remove(self)
+                self.game.comet_event.attempt_fall()

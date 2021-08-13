@@ -18,7 +18,7 @@ class Player(Sprite):
         self.image = pygame.image.load(constants.PLAYER_PATH)
         self.rect = self.image.get_rect()
         self.rect.x = 400
-        self.rect.y = 500
+        self.rect.y = constants.GROUND
 
     def move_right(self) -> None:
         if not self.game.check_collisison(self, self.game.group_monsters):

@@ -25,6 +25,8 @@ RIGHT_EDGE: Final[int] = 920
 LEFT_OUT: Final[int] = -100
 RIGHT_OUT: Final[int] = 1080
 
+GROUND = 500
+
 # Constants for the projectile
 
 PROJECTILE_SIZE: Final[int] = 50
