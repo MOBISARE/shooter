@@ -12,6 +12,9 @@ MONSTER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "mummy.png")
 BANNER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "banner.png")
 BUTTON_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "button.png")
 COMET_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "comet.png")
+
+ASSETS_PATH: Final[str] = os.path.join(ROOT_DIR, "assets")
+PNG: Final[str] = ".png"
 # Constants for the screen
 
 FRAME: Final[int] = 60
