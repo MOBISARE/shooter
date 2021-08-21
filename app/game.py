@@ -4,10 +4,13 @@ import pygame.display
 from pygame.time import Clock
 
 import constants
+from alien import Alien
 from monster import Monster
+from mummy import Mummy
 from player import Player
 from pygame.sprite import Group, Sprite
 from comet_event import CometFallEvent
+
 
 class Game:
 
@@ -47,7 +50,6 @@ class Game:
 
         # group of monsters
         self.group_monsters = Group()
-
 
     def update(self):
         # apply the player
@@ -127,17 +129,16 @@ class Game:
         print("Exiting...")
         pygame.quit()
 
-    def spawn_monsters(self) -> None:
-        monster = Monster(self)
-        self.group_monsters.add(monster)
+    def spawn_monsters(self, monster_class_name) -> None:
+        self.group_monsters.add(monster_class_name.__call__(self))
 
     def check_collisison(self, sprite: Sprite, group: Group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
     def start(self):
         self.is_playing = True
-        self.spawn_monsters()
-        self.spawn_monsters()
+        self.spawn_monsters(Mummy)
+        self.spawn_monsters(Alien)
 
     def game_over(self):
         self.group_monsters = Group()

@@ -1,26 +1,22 @@
 import random
-
 import pygame
-from pygame.rect import Rect
-from pygame.sprite import Sprite
-from pygame.surface import Surface
-
 import constants
 from animation import AnimateSprite
+from typing import Tuple
 
 
 class Monster(AnimateSprite):
 
-    def __init__(self, game) -> None:
-        super().__init__("mummy")
+    def __init__(self, game, name: str, size: Tuple[int, int], offset: int =constants.DEFAULT_OFFSET) -> None:
+        super().__init__(name, size)
         self.game = game
-        self.health: int = 100
-        self.max_health: int = 100
-        self.attack: float = 0.3
-        self.velocity: int = random.randint(1, 3)
-        self.rect: Rect = self.image.get_rect()
+        self.health = 100
+        self.max_health = 100
+        self.attack = 0.3
+        self.velocity = random.randint(1, 3)
+        self.rect = self.image.get_rect()
         self.rect.x = 1000 + random.randint(0, 300)
-        self.rect.y = 540
+        self.rect.y = 540 - offset
         self.start_animation()
 
     def forward(self) -> None:

@@ -1,0 +1,9 @@
+import constants
+from monster import Monster
+
+
+class Mummy(Monster):
+
+    def __init__(self, game) -> None:
+        super().__init__(game, "mummy", constants.MUMMY_SIZE)
+

@@ -1,7 +1,7 @@
 import os
 
 # Constants for all paths
-from typing import Final
+from typing import Final, Tuple
 
 ROOT_DIR: Final[str] = os.path.dirname(os.path.abspath(__file__))
 
@@ -37,3 +37,15 @@ PROJECTILE_SCALE_X: Final[int] = 130
 PROJECTILE_SCALE_Y: Final[int] = 80
 PROJECTILE_VELOCITY: Final[int] = 5
 PROJECTILE_ROTATION: Final[int] = 12
+
+# Constants for entities
+
+MUMMY_SIZE: Final[Tuple[int, int]] = (130, 130)
+ALIEN_SIZE: Final[Tuple[int, int]] = (300, 300)
+DEFAULT_SIZE: Final[Tuple[int, int]] = (200, 200)
+
+# Offset
+
+DEFAULT_OFFSET: int = 0
+ALIEN_OFFSET: int = 130
+
