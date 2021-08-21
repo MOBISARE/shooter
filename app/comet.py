@@ -22,9 +22,7 @@ class Comet(Sprite):
 
         if len(self.comet_event.all_comets) == 0:
             self.comet_event.reset_percent()
-            self.comet_event.game.spawn_monsters()
-            self.comet_event.game.spawn_monsters()
-            self.comet_event.game.spawn_monsters()
+            self.comet_event.game.start()
 
 
     def fall(self):

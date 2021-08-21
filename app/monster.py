@@ -13,7 +13,6 @@ class Monster(AnimateSprite):
         self.health = 100
         self.max_health = 100
         self.attack = 0.3
-        self.velocity = random.randint(1, 3)
         self.rect = self.image.get_rect()
         self.rect.x = 1000 + random.randint(0, 300)
         self.rect.y = 540 - offset
@@ -24,6 +23,10 @@ class Monster(AnimateSprite):
             self.rect.x -= self.velocity
         else:
             self.game.player.damage(self.attack)
+
+    def set_speed(self, speed):
+        self.default_speed = speed
+        self.velocity = random.randint(1, 3)
 
     def update_animation(self):
         self.animate(loop=True)
@@ -41,7 +44,7 @@ class Monster(AnimateSprite):
         if self.health <= 0:
             self.rect.x = 1080
             self.health = self.max_health
-            self.velocity = random.randint(1, 3)
+            self.velocity = random.randint(1, self.default_speed)
 
             if self.game.comet_event.is_full_loaded():
                 self.game.group_monsters.remove(self)
