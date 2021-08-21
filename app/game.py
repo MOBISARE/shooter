@@ -56,6 +56,9 @@ class Game:
         # update player's health bar
         self.player.update_health_bar(self.screen)
 
+        # update player's animations
+        self.player.update_animation()
+
         # update comet event bar
         self.comet_event.update_bar(self.screen)
 

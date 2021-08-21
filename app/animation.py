@@ -12,13 +12,23 @@ class AnimateSprite(Sprite):
         self.image = pygame.image.load(os.path.join(constants.ROOT_DIR, "assets", sprite_name) + ".png")
         self.current_image = 0
         self.images = animations.get(sprite_name)
+        self.animation = False
 
-    def animate(self):
-        self.current_image += 1
-        if self.current_image >= len(self.images):
-            self.current_image = 0
+    def start_animation(self):
+        self.animation = True
 
-        self.image = self.images[self.current_image]
+    def animate(self, loop : bool = False):
+
+        if self.animation:
+
+            self.current_image += 1
+            if self.current_image >= len(self.images):
+                self.current_image = 0
+
+                if loop is False:
+                    self.animation = False
+
+            self.image = self.images[self.current_image]
 
 
 def load_animation_images(sprite_name) -> list:
@@ -32,5 +42,6 @@ def load_animation_images(sprite_name) -> list:
     return images
 
 animations = {
-    "mummy" : load_animation_images("mummy")
+    "mummy" : load_animation_images("mummy"),
+    "player" : load_animation_images("player")
 }

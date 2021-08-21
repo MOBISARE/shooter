@@ -3,19 +3,19 @@ import pygame.sprite
 import constants
 from projectile import Projectile
 from pygame.sprite import Sprite
+from animation import AnimateSprite
 
 
-class Player(Sprite):
+class Player(AnimateSprite):
 
     def __init__(self, game) -> None:
-        super().__init__()
+        super().__init__("player")
         self.game = game
         self.health = 100
         self.max_health = 100
         self.attack = 10
         self.velocity = 5
         self.all_projectiles = pygame.sprite.Group()
-        self.image = pygame.image.load(constants.PLAYER_PATH)
         self.rect = self.image.get_rect()
         self.rect.x = 400
         self.rect.y = constants.GROUND
@@ -30,6 +30,10 @@ class Player(Sprite):
     def launch_projectile(self) -> None:
         projectile = Projectile(self)
         self.all_projectiles.add(projectile)
+        self.start_animation()
+
+    def update_animation(self):
+        self.animate()
 
     def update_health_bar(self, surface) -> None:
         bar_color = (50, 255, 26)

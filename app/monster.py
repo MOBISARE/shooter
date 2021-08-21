@@ -18,11 +18,10 @@ class Monster(AnimateSprite):
         self.max_health: int = 100
         self.attack: float = 0.3
         self.velocity: int = random.randint(1, 3)
-        #self.image: Surface = pygame.image.load(constants.MONSTER_PATH)
         self.rect: Rect = self.image.get_rect()
-
         self.rect.x = 1000 + random.randint(0, 300)
         self.rect.y = 540
+        self.start_animation()
 
     def forward(self) -> None:
         if not self.game.check_collisison(self, self.game.group_players):
@@ -30,10 +29,8 @@ class Monster(AnimateSprite):
         else:
             self.game.player.damage(self.attack)
 
-
     def update_animation(self):
-        self.animate()
-
+        self.animate(loop=True)
 
     def update_health_bar(self, surface) -> None:
         bar_color = (50, 255, 26)
