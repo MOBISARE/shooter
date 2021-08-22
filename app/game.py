@@ -51,7 +51,16 @@ class Game:
         # group of monsters
         self.group_monsters = Group()
 
+        # score
+        self.font = pygame.font.Font(constants.FONT_PATH, constants.SCORE_SIZE)
+        self.score = 0
+
     def update(self):
+
+        # apply the score
+        score_text = self.font.render(f"Score : {self.score}", 1, constants.TEXT_COLOR)
+        self.screen.blit(score_text, constants.SCORE_POSITION)
+
         # apply the player
         self.screen.blit(self.player.image, self.player.rect)
 
@@ -144,3 +153,7 @@ class Game:
         self.group_monsters = Group()
         self.player.health = self.player.max_health
         self.is_playing = False
+        self.score = 0
+
+    def add_score(self, points):
+        self.score += points

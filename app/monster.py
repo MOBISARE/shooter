@@ -17,6 +17,7 @@ class Monster(AnimateSprite):
         self.rect.x = 1000 + random.randint(0, 300)
         self.rect.y = 540 - offset
         self.start_animation()
+        self.loot_amount = 10
 
     def forward(self) -> None:
         if not self.game.check_collisison(self, self.game.group_players):
@@ -27,6 +28,9 @@ class Monster(AnimateSprite):
     def set_speed(self, speed):
         self.default_speed = speed
         self.velocity = random.randint(1, 3)
+
+    def set_loot_amount(self, amount):
+        self.loot_amount = amount
 
     def update_animation(self):
         self.animate(loop=True)
@@ -45,6 +49,7 @@ class Monster(AnimateSprite):
             self.rect.x = 1080
             self.health = self.max_health
             self.velocity = random.randint(1, self.default_speed)
+            self.game.add_score(self.loot_amount)
 
             if self.game.comet_event.is_full_loaded():
                 self.game.group_monsters.remove(self)

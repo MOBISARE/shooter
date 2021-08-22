@@ -12,6 +12,7 @@ MONSTER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "mummy.png")
 BANNER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "banner.png")
 BUTTON_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "button.png")
 COMET_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "comet.png")
+FONT_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "font.ttf")
 
 ASSETS_PATH: Final[str] = os.path.join(ROOT_DIR, "assets")
 PNG: Final[str] = ".png"
@@ -29,6 +30,10 @@ LEFT_OUT: Final[int] = -100
 RIGHT_OUT: Final[int] = 1080
 
 GROUND = 500
+
+SCORE_SIZE: Final[int] = 25
+TEXT_COLOR: Final[Tuple[int, int, int]] = (255, 255, 255)
+SCORE_POSITION: Final[Tuple[int, int]] = (20, 20)
 
 # Constants for the projectile
 
