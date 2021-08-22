@@ -15,6 +15,12 @@ COMET_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "comet.png")
 FONT_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "font.ttf")
 
 ASSETS_PATH: Final[str] = os.path.join(ROOT_DIR, "assets")
+
+SOUND_CLICK_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "sounds", "click.ogg")
+SOUND_GAME_OVER_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "sounds", "game_over.ogg")
+SOUND_METEORITE_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "sounds", "meteorite.ogg")
+SOUND_SHOOT_PATH: Final[str] = os.path.join(ROOT_DIR, "assets", "sounds", "tir.ogg")
+
 PNG: Final[str] = ".png"
 # Constants for the screen
 

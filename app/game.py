@@ -10,6 +10,7 @@ from mummy import Mummy
 from player import Player
 from pygame.sprite import Group, Sprite
 from comet_event import CometFallEvent
+from sounds import SoundManager
 
 
 class Game:
@@ -19,8 +20,10 @@ class Game:
 
         self.is_playing = False
 
-        # making the screen
+        # sounds manager
+        self.sound_manager = SoundManager()
 
+        # making the screen
         self.screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
         pygame.display.set_caption("Shooter")
 
@@ -125,7 +128,11 @@ class Game:
                     self.pressed[event.key] = True
 
                     if event.key == pygame.K_SPACE:
-                        self.player.launch_projectile()
+                        if self.is_playing:
+                            self.player.launch_projectile()
+                        else:
+                            self.start()
+                            self.sound_manager.play("click")
 
                 elif event.type == pygame.KEYUP:
                     self.pressed[event.key] = False
@@ -133,6 +140,7 @@ class Game:
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if self.button_rect.collidepoint(event.pos):
                         self.start()
+                        self.sound_manager.play("click")
 
             clock.tick(constants.FRAME)
         print("Exiting...")
@@ -151,9 +159,12 @@ class Game:
 
     def game_over(self):
         self.group_monsters = Group()
+        self.comet_event.reset_percent()
+        self.comet_event.all_comets.remove()
         self.player.health = self.player.max_health
         self.is_playing = False
         self.score = 0
+        self.sound_manager.play("game_over")
 
     def add_score(self, points):
         self.score += points

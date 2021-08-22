@@ -31,6 +31,7 @@ class Player(AnimateSprite):
         projectile = Projectile(self)
         self.all_projectiles.add(projectile)
         self.start_animation()
+        self.game.sound_manager.play("tir")
 
     def update_animation(self):
         self.animate()
